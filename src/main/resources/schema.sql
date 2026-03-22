@@ -28,4 +28,3 @@ CREATE TABLE courses (
                                  ON DELETE SET NULL
 );
 
-

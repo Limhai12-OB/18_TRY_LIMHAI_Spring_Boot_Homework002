@@ -19,8 +19,7 @@ public interface CourseRepository {
             @Result(property = "instructor.email", column = "email")
     })
     @Select("""
-            SELECT c.course_id, c.course_name, c.description,
-                   i.instructor_id, i.instructor_name, i.email
+            SELECT c.course_id, c.course_name, c.description, i.instructor_id, i.instructor_name, i.email
                     FROM courses c 
                     JOIN instructors i 
                     ON c.instructor_id = i.instructor_id
@@ -32,8 +31,7 @@ public interface CourseRepository {
 
     @ResultMap("courseMapping")
     @Select("""
-        SELECT c.course_id, c.course_name, c.description,
-               i.instructor_id, i.instructor_name, i.email
+        SELECT c.course_id, c.course_name, c.description, i.instructor_id, i.instructor_name, i.email
         FROM courses c
         JOIN instructors i
         ON c.instructor_id = i.instructor_id
@@ -83,12 +81,7 @@ public interface CourseRepository {
 
     @Select("""
         SELECT 
-            c.course_id,
-            c.course_name,
-            c.description,
-            i.instructor_id,
-            i.instructor_name,
-            i.email
+            c.course_id, c.course_name, c.description, i.instructor_id, i.instructor_name,i.email
         FROM courses c
         JOIN student_course sc 
             ON c.course_id = sc.course_id
