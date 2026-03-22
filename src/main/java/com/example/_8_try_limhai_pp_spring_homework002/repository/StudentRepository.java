@@ -53,5 +53,20 @@ public interface StudentRepository {
     int deleteStudentById(Integer studentId);
 
 
+    @Select("""
+        INSERT INTO students(student_name,email,phone_number)
+        VALUES(#{studentName},#{email},#{phoneNumber})
+        RETURNING student_id
+    """)
+    Integer insertStudent(Student student);
+
+    @ResultMap("studentMapping")
+    @Select("""
+        SELECT * FROM students
+        WHERE student_id = #{studentId}
+    """)
+    Student findStudentById(Integer studentId);
+
+
 
 }

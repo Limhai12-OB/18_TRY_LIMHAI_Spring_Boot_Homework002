@@ -15,9 +15,6 @@ public class InstructorServiceImpl implements InstructorService {
 
     private final InstructorRepository instructorRepository;
 
-
-
-
     @Override
     public List<Instructor> getAllInstructors(Integer page, Integer size) {
         return instructorRepository.findAllInstructor(page,size);

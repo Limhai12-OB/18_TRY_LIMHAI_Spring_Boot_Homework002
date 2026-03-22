@@ -13,4 +13,6 @@ public interface StudentService {
 
     int deleteStudentById(Integer studentId);
 
+    Student addStudent(StudentRequest studentRequest);
+
 }

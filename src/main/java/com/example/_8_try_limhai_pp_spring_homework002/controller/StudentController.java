@@ -74,14 +74,10 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
-//    @DeleteMapping("{student_id}")
-//    public Student deleteStudentById(@PathVariable Integer student_id) {
-//        return studentService.deleteStudentById(student_id);
-//    }
+
 
     @DeleteMapping("{student_id}")
     public ResponseEntity<ApiResponse<String>> deleteStudentById(@PathVariable("student_id") Integer studentId) {
-//        int deleted = studentService.deleteStudentById(studentId);
         if (studentService.deleteStudentById(studentId) > 0) {
             ApiResponse<String> response = ApiResponse.<String>builder()
                     .success(true)
@@ -102,6 +98,23 @@ public class StudentController {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
+
+    @PostMapping
+    public ResponseEntity<ApiResponse<Student>> addStudent(@RequestBody StudentRequest studentRequest){
+
+        Student student = studentService.addStudent(studentRequest);
+
+        ApiResponse<Student> response = ApiResponse.<Student>builder()
+                .success(true)
+                .status(HttpStatus.CREATED)
+                .message("Add student successfully")
+                .payload(student)
+                .timestamp(Instant.now())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
 
 
 }
