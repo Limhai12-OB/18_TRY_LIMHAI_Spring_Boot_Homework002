@@ -116,6 +116,35 @@ public class StudentController {
     }
 
 
+    @PutMapping("{student_id}")
+    public ResponseEntity<ApiResponse<Student>> updateStudent( @PathVariable("student_id") Integer studentId, @RequestBody StudentRequest studentRequest) {
+
+        Student updatedStudent = studentService.updateStudent(studentId, studentRequest);
+
+        if (updatedStudent != null) {
+            ApiResponse<Student> response = ApiResponse.<Student>builder()
+                    .success(true)
+                    .message("Student updated successfully")
+                    .status(HttpStatus.OK)
+                    .payload(updatedStudent)
+                    .timestamp(Instant.now())
+                    .build();
+
+            return ResponseEntity.ok(response);
+        }
+
+        ApiResponse<Student> response = ApiResponse.<Student>builder()
+                .success(false)
+                .message("Student not found with id: " + studentId)
+                .status(HttpStatus.NOT_FOUND)
+                .payload(null)
+                .timestamp(Instant.now())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
+
+
 
 }
 

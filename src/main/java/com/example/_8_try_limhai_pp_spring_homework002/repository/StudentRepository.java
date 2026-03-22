@@ -67,6 +67,13 @@ public interface StudentRepository {
     """)
     Student findStudentById(Integer studentId);
 
+    @ResultMap("studentMapping")
+    @Select("""
+        UPDATE students SET student_name = #{studentName}, email = #{email}, phone_number = #{phoneNumber}
+        WHERE student_id = #{studentId}
+        """)
+    Student updateStudent(Student student);
+
 
 
 }

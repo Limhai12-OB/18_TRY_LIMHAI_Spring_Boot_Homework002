@@ -15,4 +15,6 @@ public interface StudentService {
 
     Student addStudent(StudentRequest studentRequest);
 
+    Student updateStudent (Integer studentId, StudentRequest studentRequest);
+
 }
